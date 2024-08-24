@@ -9,7 +9,7 @@ const Header = () => {
         {/* Logotipo */}
         <div className="flex items-center space-x-2">
           <Image
-            src="/logo.png" // Reemplaza con la ruta de tu logo
+            src="/logo.png"
             alt="Logo"
             width={40}
             height={40}

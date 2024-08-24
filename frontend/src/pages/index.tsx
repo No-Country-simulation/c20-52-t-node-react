@@ -7,7 +7,6 @@ const Home = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <div className="flex flex-col lg:flex-row flex-1">
-        {/* Sección de la izquierda con la imagen */}
         <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-100 p-8">
           <Image
             src="/image1.jpg"
@@ -18,7 +17,7 @@ const Home = () => {
           />
         </div>
 
-        {/* Sección de la derecha con el texto */}
+        
         <div className="w-full lg:w-1/2 bg-blue-900 text-white flex flex-col justify-center p-8">
           <h1 className="text-3xl sm:text-4xl font-bold mb-4">
             Médicos en línea disponibles 24/7.
@@ -36,7 +35,7 @@ const Home = () => {
             <li><a href="#" className="text-blue-300 underline">y más</a></li>
           </ul>
 
-          {/* Botones de Empezar y Cómo Funciona */}
+          
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <a href="#empezar" className="bg-white text-blue-900 font-bold py-2 px-4 rounded hover:bg-gray-200">
               Empezar
