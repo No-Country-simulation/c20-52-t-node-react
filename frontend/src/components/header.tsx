@@ -9,13 +9,15 @@ const Header = () => {
         {/* Logotipo */}
         <div className="flex items-center space-x-2">
           <Image
-            src="/logo.png"
+            src="/Dr+.png"
             alt="Logo"
             width={40}
             height={40}
+            className="rounded-full object-cover"
           />
           <span className="text-xl font-bold text-gray-800">On Demand</span>
         </div>
+
 
         {/* Menú de navegación */}
         <nav className="hidden md:flex space-x-6">
