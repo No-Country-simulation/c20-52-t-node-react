@@ -1,14 +1,15 @@
-// src/components/AnimatedCard.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 
 interface CardProps {
   title: string;
   items: string[];
+  image?: string; // Haz que la imagen sea opcional
 }
 
-const AnimatedCard: React.FC<CardProps> = ({ title, items }) => {
+const AnimatedCard: React.FC<CardProps> = ({ title, items, image }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -22,8 +23,19 @@ const AnimatedCard: React.FC<CardProps> = ({ title, items }) => {
       transition={{ duration: 0.5 }}
       className="bg-white p-6 rounded-lg shadow"
     >
-      <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
-      <ul className="space-y-2">
+      {image && (
+        <div className="h-48 w-full overflow-hidden rounded-t-lg">
+          <Image
+            src={image}
+            alt={title}
+            width={300}
+            height={200}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+      <h3 className="text-xl font-bold text-gray-800 mt-4">{title}</h3>
+      <ul className="space-y-2 mt-2">
         {items.map((item, index) => (
           <li key={index}>
             <a href="#" className="text-blue-600 underline">

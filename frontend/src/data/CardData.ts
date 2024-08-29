@@ -1,5 +1,3 @@
-// src/data/cardData.ts
-
 export const cardData = [
     {
       title: 'Cuidado Diario',

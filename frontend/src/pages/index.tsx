@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { cardData } from '../data/CardData';
 import Header from '@/components/header';
 import AnimatedCard from '@/components/AnimateCard';
+import { whyDoctorData } from '@/data/WhyDoctorData';
+import Footer from '@/components/Footer';
 
 const Home = () => {
   return (
@@ -18,7 +20,6 @@ const Home = () => {
             className="rounded-lg shadow-lg"
           />
         </div>
-
 
         <div className="w-full lg:w-1/2 bg-blue-900 text-white flex flex-col justify-center p-8">
           <h1 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -36,7 +37,6 @@ const Home = () => {
             <li><a href="#" className="text-blue-300 underline">recambios de recetas</a></li>
             <li><a href="#" className="text-blue-300 underline">y más</a></li>
           </ul>
-
 
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <a href="#empezar" className="bg-white text-blue-900 font-bold py-2 px-4 rounded hover:bg-gray-200">
@@ -72,6 +72,21 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Tercera Sección */}
+      <section className="bg-white py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-blue-900 mb-8">
+            ¿Por qué Doctor On Demand?
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {whyDoctorData.map((card, index) => (
+              <AnimatedCard key={index} title={card.title} items={card.items} image={card.image} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <Footer/>
     </div>
   );
 };
