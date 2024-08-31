@@ -13,12 +13,70 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Medic {
-  id        Int      @id @default(autoincrement())
-  name      String
-  lastName  String
-  age       Int
-  email     String
-  password  String
-  createdAt DateTime @default(now())
+model User {
+  id           String        @id @default(uuid())
+  firstName    String
+  lastName     String
+  age          Int
+  email        String
+  password     String
+  birthday     DateTime
+  gender       String
+  role         Role          @default(normal)
+  phone        String
+  status       Status        @default(active)
+  createdAt    DateTime      @default(now())
+  Appointments Appointment[]
+}
+
+model Doctor {
+  id              String        @id @default(uuid())
+  firstName       String
+  lastName        String
+  age             Int
+  email           String
+  password        String
+  birthday        DateTime
+  gender          String
+  role            Role          @default(doctor)
+  medicSpeciality String
+  license         String
+  phone           String
+  status          Status        @default(active)
+  Appointments    Appointment[]
+  createdAt       DateTime      @default(now())
+}
+
+model Appointment {
+  id          String    @id @default(uuid())
+  user        User?     @relation(fields: [userId], references: [id])
+  userId      String
+  Doctor      Doctor?   @relation(fields: [doctorId], references: [id])
+  doctorId    String?
+  date        DateTime
+  status      String
+  description String
+  diagnosis   String
+  treatment   String
+  payments    Payment[]
+  createdAt   DateTime  @default(now())
+}
+
+model Payment {
+  id            String       @id @default(uuid())
+  appointment   Appointment? @relation(fields: [appointmentId], references: [id])
+  appointmentId String
+  paymentMethod String
+  description   String
+  quantity      Int
+}
+
+enum Role {
+  normal
+  doctor
+}
+
+enum Status {
+  active
+  inactive
 }
