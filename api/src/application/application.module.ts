@@ -6,6 +6,10 @@ import { FETCH_DOCTOR_USE_CASE } from 'src/domain/usecase/doctor/fetch-medic.use
 import { FetchDoctorUseCaseImpl } from './usecase/doctor/fetch-medic.usecase-impl';
 import { CreateDoctorUseCaseImpl } from './usecase/doctor/create-medic.usecase-impl';
 import { DoctorImplRepository } from 'src/infrastructure/repository/doctor-impl.repository';
+import { UPDATE_DOCTOR_USE_CASE } from 'src/domain/usecase/doctor/update-medic.usecase';
+import { UpdateDoctorUseCaseImpl } from './usecase/doctor/update-medic.usecase-impl';
+import { DELETE_DOCTOR_USE_CASE } from 'src/domain/usecase/doctor/delete-medic.usecase';
+import { DeleteDoctorUseCaseImpl } from './usecase/doctor/delete-medic.usecase-impl';
 @Module({
   imports: [],
   providers: [
@@ -25,6 +29,14 @@ import { DoctorImplRepository } from 'src/infrastructure/repository/doctor-impl.
       provide: FETCH_DOCTOR_USE_CASE,
       useClass: FetchDoctorUseCaseImpl,
     },
+    {
+      provide: UPDATE_DOCTOR_USE_CASE,
+      useClass: UpdateDoctorUseCaseImpl,
+    },
+    {
+      provide: DELETE_DOCTOR_USE_CASE,
+      useClass: DeleteDoctorUseCaseImpl,
+    },
   ],
   exports: [
     {
@@ -34,6 +46,14 @@ import { DoctorImplRepository } from 'src/infrastructure/repository/doctor-impl.
     {
       provide: FETCH_DOCTOR_USE_CASE,
       useClass: FetchDoctorUseCaseImpl,
+    },
+    {
+      provide: UPDATE_DOCTOR_USE_CASE,
+      useClass: UpdateDoctorUseCaseImpl,
+    },
+    {
+      provide: DELETE_DOCTOR_USE_CASE,
+      useClass: DeleteDoctorUseCaseImpl,
     },
   ],
 })
