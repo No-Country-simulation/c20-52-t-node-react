@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,12 +7,82 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Medic {
-  id        Int      @id @default(autoincrement())
-  name      String
-  lastName  String
-  age       Int
-  email     String
-  password  String
-  createdAt DateTime @default(now())
+model User {
+  id             String          @id @default(uuid())
+  firstName      String
+  lastName       String
+  age            Int
+  email          String          @unique()
+  password       String
+  birthday       DateTime
+  gender         String
+  role           Role            @default(normal)
+  phone          String          @unique()
+  status         Status          @default(active)
+  createdAt      DateTime        @default(now())
+  appointments   Appointment[]
+  medicalRecords MedicalRecord[]
+}
+
+model Doctor {
+  id             String          @id @default(uuid())
+  firstName      String
+  lastName       String
+  age            Int
+  email          String          @unique()
+  password       String
+  birthday       DateTime
+  gender         String
+  role           Role            @default(doctor)
+  speciality     String
+  license        String
+  phone          String          @unique()
+  status         Status          @default(active)
+  appointments   Appointment[]
+  medicalRecords MedicalRecord[]
+  createdAt      DateTime        @default(now())
+}
+
+model Appointment {
+  id          String    @id @default(uuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  doctor      Doctor    @relation(fields: [doctorId], references: [id])
+  doctorId    String
+  date        DateTime
+  status      String
+  description String
+  diagnosis   String
+  treatment   String
+  payments    Payment[]
+  createdAt   DateTime  @default(now())
+}
+
+model Payment {
+  id            String      @id @default(uuid())
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+  appointmentId String
+  paymentMethod String
+  description   String
+  quantity      Int
+}
+
+model MedicalRecord {
+  id         String   @id @default(uuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  doctor     Doctor   @relation(fields: [doctorId], references: [id])
+  doctorId   String
+  recordDate DateTime @default(now())
+  notes      String
+}
+
+enum Role {
+  normal
+  doctor
+}
+
+enum Status {
+  active
+  inactive
 }
