@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import { CREATE_MEDIC_USE_CASE } from '../domain/usecase/create-medic.usecase';
-import { CreateMedicUseCaseImpl } from './usecase/create-medic.usecase-impl';
-import { MEDIC_REPOSITORY } from '../domain/repository/medic.repository';
-import { MedicImplRepository } from '../infrastructure/repository/medic-impl.repository';
-import { FETCH_MEDIC_USE_CASE } from '../domain/usecase/fetch-medic.usecase';
-import { FetchMedicUseCaseImpl } from './usecase/fetch-medic.usecase-impl';
+import { DOCTOR_REPOSITORY } from '../domain/repository/doctor.repository';
+import { CREATE_DOCTOR_USE_CASE } from 'src/domain/usecase/doctor/create-doctor.usecase';
+import { FETCH_DOCTOR_USE_CASE } from 'src/domain/usecase/doctor/fetch-medic.usecase';
+import { FetchDoctorUseCaseImpl } from './usecase/doctor/fetch-medic.usecase-impl';
+import { CreateDoctorUseCaseImpl } from './usecase/doctor/create-medic.usecase-impl';
+import { DoctorImplRepository } from 'src/infrastructure/repository/doctor-impl.repository';
 @Module({
   imports: [],
   providers: [
@@ -14,26 +14,26 @@ import { FetchMedicUseCaseImpl } from './usecase/fetch-medic.usecase-impl';
       useValue: new PrismaClient(),
     },
     {
-      provide: MEDIC_REPOSITORY,
-      useClass: MedicImplRepository,
+      provide: DOCTOR_REPOSITORY,
+      useClass: DoctorImplRepository,
     },
     {
-      provide: CREATE_MEDIC_USE_CASE,
-      useClass: CreateMedicUseCaseImpl,
+      provide: CREATE_DOCTOR_USE_CASE,
+      useClass: CreateDoctorUseCaseImpl,
     },
     {
-      provide: FETCH_MEDIC_USE_CASE,
-      useClass: FetchMedicUseCaseImpl,
+      provide: FETCH_DOCTOR_USE_CASE,
+      useClass: FetchDoctorUseCaseImpl,
     },
   ],
   exports: [
     {
-      provide: CREATE_MEDIC_USE_CASE,
-      useClass: CreateMedicUseCaseImpl,
+      provide: CREATE_DOCTOR_USE_CASE,
+      useClass: CreateDoctorUseCaseImpl,
     },
     {
-      provide: FETCH_MEDIC_USE_CASE,
-      useClass: FetchMedicUseCaseImpl,
+      provide: FETCH_DOCTOR_USE_CASE,
+      useClass: FetchDoctorUseCaseImpl,
     },
   ],
 })

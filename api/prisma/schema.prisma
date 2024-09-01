@@ -30,21 +30,21 @@ model User {
 }
 
 model Doctor {
-  id              String        @id @default(uuid())
-  firstName       String
-  lastName        String
-  age             Int
-  email           String
-  password        String
-  birthday        DateTime
-  gender          String
-  role            Role          @default(doctor)
-  medicSpeciality String
-  license         String
-  phone           String
-  status          Status        @default(active)
-  Appointments    Appointment[]
-  createdAt       DateTime      @default(now())
+  id               String        @id @default(uuid())
+  firstName        String
+  lastName         String
+  age              Int
+  email            String
+  password         String
+  birthday         DateTime
+  gender           String
+  role             Role          @default(doctor)
+  DoctorSpeciality String
+  license          String
+  phone            String
+  status           Status        @default(active)
+  Appointments     Appointment[]
+  createdAt        DateTime      @default(now())
 }
 
 model Appointment {

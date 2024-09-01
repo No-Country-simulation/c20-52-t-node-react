@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
               <p className="mt-2"><FaEnvelope className="inline mr-2" />drondemand@app.com</p>
             </div>
             <div>
-              <p className="font-bold">CONSULTAS DE MEDICAMENTOS</p>
+              <p className="font-bold">CONSULTAS DE DoctorAMENTOS</p>
               <p className="mt-2"><FaPhone className="inline mr-2" /> 0810 222 4276 Días hábiles de 8 a 17 HS</p>
               <p className="mt-2"><FaWhatsapp className="inline mr-2" /> 0342 559 4737</p>
             </div>
