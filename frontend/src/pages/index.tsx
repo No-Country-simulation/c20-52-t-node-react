@@ -1,6 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
+import { cardData } from '../data/CardData';
 import Header from '@/components/header';
+import AnimatedCard from '@/components/AnimateCard';
+import { whyDoctorData } from '@/data/WhyDoctorData';
+import Footer from '@/components/Footer';
 
 const Home = () => {
   return (
@@ -17,7 +21,6 @@ const Home = () => {
           />
         </div>
 
-        
         <div className="w-full lg:w-1/2 bg-blue-900 text-white flex flex-col justify-center p-8">
           <h1 className="text-3xl sm:text-4xl font-bold mb-4">
             Médicos en línea disponibles 24/7.
@@ -35,7 +38,6 @@ const Home = () => {
             <li><a href="#" className="text-blue-300 underline">y más</a></li>
           </ul>
 
-          
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <a href="#empezar" className="bg-white text-blue-900 font-bold py-2 px-4 rounded hover:bg-gray-200">
               Empezar
@@ -59,45 +61,32 @@ const Home = () => {
             <a href="#" className="text-blue-600 underline"> Aceptamos la mayoría de los seguros</a>, lo que significa que su visita podría ser gratuita.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-xl font-bold text-gray-800 mb-4">Cuidado Diario</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-blue-600 underline">Cuidado de la piel, erupciones cutáneas</a></li>
-                <li><a href="#" className="text-blue-600 underline">Acné</a></li>
-                <li><a href="#" className="text-blue-600 underline">Pérdida de cabello</a></li>
-                <li><a href="#" className="text-blue-600 underline">Eczema</a></li>
-                <li><a href="#" className="text-blue-600 underline">Asma</a></li>
-                <li><a href="#" className="text-blue-600 underline">Salud sexual</a></li>
-                <li><a href="#" className="text-blue-600 underline">Y más</a></li>
-              </ul>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-xl font-bold text-gray-800 mb-4">Atención Urgente</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-blue-600 underline">Resfriado y gripe</a></li>
-                <li><a href="#" className="text-blue-600 underline">COVID</a></li>
-                <li><a href="#" className="text-blue-600 underline">Infecciones sinusales</a></li>
-                <li><a href="#" className="text-blue-600 underline">UTI</a></li>
-                <li><a href="#" className="text-blue-600 underline">Tos y fiebre</a></li>
-                <li><a href="#" className="text-blue-600 underline">Infecciones por levaduras</a></li>
-                <li><a href="#" className="text-blue-600 underline">Y más</a></li>
-              </ul>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-xl font-bold text-gray-800 mb-4">Terapia Online</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-blue-600 underline">Ansiedad</a></li>
-                <li><a href="#" className="text-blue-600 underline">Depresión</a></li>
-                <li><a href="#" className="text-blue-600 underline">Estrés</a></li>
-                <li><a href="#" className="text-blue-600 underline">Dolor y pérdida</a></li>
-                <li><a href="#" className="text-blue-600 underline">Posparto</a></li>
-                <li><a href="#" className="text-blue-600 underline">TEPT</a></li>
-                <li><a href="#" className="text-blue-600 underline">Y más</a></li>
-              </ul>
-            </div>
+            {cardData.map((card, index) => (
+              <AnimatedCard key={index} title={card.title} items={card.items} />
+            ))}
+          </div>
+          <div className="text-center mt-6">
+            <button className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">
+              Averigüe si aceptamos su seguro
+            </button>
           </div>
         </div>
       </section>
+
+      {/* Tercera Sección */}
+      <section className="bg-white py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-blue-900 mb-8">
+            ¿Por qué Doctor On Demand?
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {whyDoctorData.map((card, index) => (
+              <AnimatedCard key={index} title={card.title} items={card.items} image={card.image} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <Footer/>
     </div>
   );
 };
