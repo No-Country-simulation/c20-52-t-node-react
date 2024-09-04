@@ -8,6 +8,7 @@ import {
   Delete,
   Inject,
   Query,
+  BadRequestException,
 } from '@nestjs/common';
 import { CreateDoctorDto } from 'src/domain/dto/doctor/create-doctor.dto';
 import { UpdateDoctorDto } from 'src/domain/dto/doctor/update-doctor.dto';
@@ -43,7 +44,15 @@ export class DoctorController {
 
   @Post()
   async create(@Body() createDoctorDto: CreateDoctorDto) {
-    return await this.createDoctor.execute(createDoctorDto);
+    return await this.createDoctor.execute(createDoctorDto).catch((error) => {
+      if (error.message == 'DOCTOR_ALREADY_EXIST') {
+        throw new BadRequestException('Doctor Already Exist', error);
+      }
+      throw new BadRequestException('Something bad happened', {
+        cause: new Error(),
+        description: 'Some error description',
+      });
+    });
   }
 
   @Get()
