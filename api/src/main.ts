@@ -6,6 +6,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
   app.useGlobalPipes(new ValidationPipe({ stopAtFirstError: true }));
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
   await app.listen(PORT);
   Logger.log(`Backend ready in port ${PORT}`);
 }
