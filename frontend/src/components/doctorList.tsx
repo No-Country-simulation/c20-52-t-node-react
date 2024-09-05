@@ -1,37 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Table, TableBody, TableCell, TableContainer,
   TableHead, TableRow, Paper
 } from '@mui/material';
-import { getDoctors } from '../services/doctor.service';
-import { Doctor } from '../types/doctor';
+import { useDoctorStore } from '../store/doctorStore';
 
 const DoctorList: React.FC = () => {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { doctors, loading, error, fetchDoctors } = useDoctorStore();
 
   useEffect(() => {
-    const fetchDoctors = async () => {
-      try {
-        const data = await getDoctors();
-        console.log('Received doctors data:', data);  // Verifica los datos aquí
-        setDoctors(data);
-      } catch (error) {
-        console.error('Error fetching doctors:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchDoctors();
-  }, []);
+  }, [fetchDoctors]);
 
   if (loading) {
     return <p>Loading...</p>;
   }
 
-  if (!Array.isArray(doctors) || doctors.length === 0) {
-    return <p>No data found</p>;
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  if (!doctors.length) {
+    return <p>No doctors found</p>;
   }
 
   return (
@@ -45,7 +35,7 @@ const DoctorList: React.FC = () => {
             <TableCell>Email</TableCell>
             <TableCell>Phone</TableCell>
             <TableCell>Status</TableCell>
-            <TableCell>Created At</TableCell>
+            <TableCell>Inicio</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
