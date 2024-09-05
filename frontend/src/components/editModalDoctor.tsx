@@ -9,7 +9,7 @@ import { Doctor } from '../types/doctor';
 interface DoctorEditModalProps {
   open: boolean;
   onClose: () => void;
-  doctor: Doctor | null;  // Doctor será null cuando estemos agregando un nuevo doctor
+  doctor: Doctor | null;  
   onSave: (updatedDoctor: Partial<Doctor>) => void;
 }
 
@@ -23,7 +23,7 @@ const DoctorEditModal: React.FC<DoctorEditModalProps> = ({ open, onClose, doctor
     status: 'inactive',
   });
 
-  // Este useEffect se activa cada vez que se abre el modal o cambia el doctor
+ 
   useEffect(() => {
     if (doctor) {
       setEditDoctor({
@@ -63,7 +63,7 @@ const DoctorEditModal: React.FC<DoctorEditModalProps> = ({ open, onClose, doctor
   };
 
   const handleSave = () => {
-    onSave(editDoctor);  // Envía los datos del doctor para guardar
+    onSave(editDoctor); 
   };
 
   return (

@@ -24,7 +24,7 @@ const DoctorList: React.FC = () => {
   };
 
   const handleAddClick = () => {
-    setCurrentDoctor(null);  // Esto prepara el modal para agregar un nuevo doctor
+    setCurrentDoctor(null);  
     setOpen(true);
   };
 
@@ -42,8 +42,7 @@ const DoctorList: React.FC = () => {
         console.error('Error updating doctor:', error);
       }
     } else {
-      // Aquí puedes manejar la lógica de crear un nuevo doctor
-      // por ejemplo: await createDoctor(newDoctor);
+      
       handleClose();
     }
   };
@@ -101,7 +100,7 @@ const DoctorList: React.FC = () => {
         color="primary"
         aria-label="add"
         onClick={handleAddClick}
-        style={{ position: 'fixed', bottom: 16, right: 16 }} // Posición del FAB
+        style={{ position: 'fixed', bottom: 16, right: 16 }} 
       >
         <AddIcon />
       </Fab>
