@@ -43,4 +43,7 @@ export class DoctorImplRepository implements DoctorRepository {
   async delete(doctorId: string): Promise<Doctor> {
     return await this.prisma.doctor.delete({ where: { id: doctorId } });
   }
+  async find(filter: any): Promise<Doctor> {
+    return await this.prisma.doctor.findUnique({ where: { ...filter } });
+  }
 }
