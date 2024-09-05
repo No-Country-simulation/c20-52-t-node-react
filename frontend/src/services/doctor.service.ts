@@ -10,23 +10,23 @@ export const getDoctors = async (): Promise<Doctor[]> => {
 
 
 export const getDoctorById = async (id: string): Promise<Doctor> => {
-  const response = await apiClient.get<Doctor>(`/doctors/${id}`);
+  const response = await apiClient.get<Doctor>(`/doctor/${id}`);
   return response.data;
 };
 
 
 export const createDoctor = async (doctorData: Partial<Doctor>): Promise<Doctor> => {
-  const response = await apiClient.post<Doctor>('/doctors', doctorData);
+  const response = await apiClient.post<Doctor>('/doctor', doctorData);
   return response.data;
 };
 
 
 export const updateDoctor = async (id: string, doctorData: Partial<Doctor>): Promise<Doctor> => {
-  const response = await apiClient.patch<Doctor>(`/doctors/${id}`, doctorData);
+  const response = await apiClient.patch<Doctor>(`/doctor/${id}`, doctorData);
   return response.data;
 };
 
 
 export const deleteDoctor = async (id: string): Promise<void> => {
-  await apiClient.delete(`/doctors/${id}`);
+  await apiClient.delete(`/doctor/${id}`);
 };
