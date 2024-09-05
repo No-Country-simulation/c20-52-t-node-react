@@ -14,19 +14,19 @@ export const getDoctorById = async (id: string): Promise<Doctor> => {
   return response.data;
 };
 
-// Crear un nuevo doctor
+
 export const createDoctor = async (doctorData: Partial<Doctor>): Promise<Doctor> => {
   const response = await apiClient.post<Doctor>('/doctors', doctorData);
   return response.data;
 };
 
-// Actualizar un doctor existente
+
 export const updateDoctor = async (id: string, doctorData: Partial<Doctor>): Promise<Doctor> => {
-  const response = await apiClient.put<Doctor>(`/doctors/${id}`, doctorData);
+  const response = await apiClient.patch<Doctor>(`/doctors/${id}`, doctorData);
   return response.data;
 };
 
-// Eliminar un doctor
+
 export const deleteDoctor = async (id: string): Promise<void> => {
   await apiClient.delete(`/doctors/${id}`);
 };
