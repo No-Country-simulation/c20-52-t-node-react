@@ -33,7 +33,7 @@ export const useDoctorStore = create<DoctorState>((set) => ({
     set({ loading: true });
     try {
       await deleteDoctorApi(id);
-      const doctors = await getDoctors(); // Refrescar la lista de doctores
+      const doctors = await getDoctors(); 
       set({ doctors });
     } catch (error) {
       set({ error: 'Failed to delete doctor' });
@@ -46,8 +46,8 @@ export const useDoctorStore = create<DoctorState>((set) => ({
   updateDoctor: async (id: string, doctorData: Partial<Doctor>) => {
     set({ loading: true });
     try {
-      await updateDoctorApi(id, doctorData); // Llamando al servicio correctamente
-      const doctors = await getDoctors(); // Refresca la lista de doctores después de actualizar
+      await updateDoctorApi(id, doctorData); 
+      const doctors = await getDoctors();
       set({ doctors });
     } catch (error) {
       set({ error: 'Failed to update doctor' });
