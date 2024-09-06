@@ -48,7 +48,6 @@ export class DoctorController {
       if (error.message == 'DOCTOR_ALREADY_EXIST') {
         throw new BadRequestException('Doctor Already Exist', error);
       }
-      console.log(error);
       throw new BadRequestException('Something bad happened', {
         cause: new Error(),
         description: 'Some error description',
