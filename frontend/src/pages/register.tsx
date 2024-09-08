@@ -1,5 +1,6 @@
-// pages/register.tsx
+
 import { registerForm } from "@/actions/registerForm";
+import RegisterForm from "@/components/usuario/RegisterForm";
 import { FormErrors, UserForm } from "@/interfaces/formRegister.interface";
 import { validateForm } from "@/utils/validateForm";
 import { useState, FormEvent } from "react";
@@ -42,82 +43,7 @@ export default function RegisterPage() {
 
   return (
     <div>
-      <h1>Registrarse</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="firstName">Nombre:</label>
-          <input type="text" id="firstName" name="firstName" />
-          {formErrors.firstName && (
-            <p style={{ color: "red" }}>{formErrors.firstName}</p>
-          )}
-        </div>
-
-        <div>
-          <label htmlFor="lastName">Apellido:</label>
-          <input type="text" id="lastName" name="lastName" />
-          {formErrors.lastName && (
-            <p style={{ color: "red" }}>{formErrors.lastName}</p>
-          )}
-        </div>
-
-        <div>
-          <label htmlFor="age">Edad:</label>
-          <input type="text" id="age" name="age" />
-          {formErrors.age && <p style={{ color: "red" }}>{formErrors.age}</p>}
-        </div>
-
-        <div>
-          <label htmlFor="birthday">Fecha de Nacimiento:</label>
-          <input type="date" id="birthday" name="birthday" />
-          {formErrors.birthday && (
-            <p style={{ color: "red" }}>{formErrors.birthday}</p>
-          )}
-        </div>
-
-        <div>
-          <label htmlFor="gender">Género:</label>
-          <select id="gender" name="gender">
-            <option value="">Seleccione</option>
-            <option value="male">Masculino</option>
-            <option value="female">Femenino</option>
-            <option value="other">Otro</option>
-          </select>
-          {formErrors.gender && (
-            <p style={{ color: "red" }}>{formErrors.gender}</p>
-          )}
-        </div>
-
-        <div>
-          <label htmlFor="email">Correo Electrónico:</label>
-          <input type="email" id="email" name="email" />
-          {formErrors.email && (
-            <p style={{ color: "red" }}>{formErrors.email}</p>
-          )}
-        </div>
-
-        <div>
-          <label htmlFor="password">Contraseña:</label>
-          <input type="password" id="password" name="password" />
-          {formErrors.password && (
-            <p style={{ color: "red" }}>{formErrors.password}</p>
-          )}
-        </div>
-
-        <div>
-          <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" />
-          {formErrors.confirmPassword && (
-            <p style={{ color: "red" }}>{formErrors.confirmPassword}</p>
-          )}
-        </div>
-
-        <button type="submit">Registrarse</button>
-      </form>
-      {formSuccess && (
-        <p style={{ color: formSuccess.includes("exitoso") ? "green" : "red" }}>
-          {formSuccess}
-        </p>
-      )}
+      <RegisterForm/>
     </div>
   );
 }
